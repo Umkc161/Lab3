@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Load the  apis-->
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+   
+ <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+google.load ('visualization', '1.0' ,{'packages':['corechart']});
+
+google.setOnLoadCallback(MakeMagic);
+
+function MakeMagic(){
+
+var data = new google.visualization.DataTable();
+data.addColumn('string','Conditions');
+data.addColumn('number','Days');
+data.addRows([
+["Sunny",10],["Cloudy",7],["Rainy",4],["Drizzle",3],["Pleasant",6]
+]);
+
+var Settings = {'title':'Kansas City weather history for the month of August','width':500,'height':400};
+
+var magic = new google.visualization.PieChart(document.getElementById('Div001'));
+
+magic.draw(data,Settings);
+
+}
+	
+	
+	
+	var glLat;
+var glLang;
+
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = new google.maps.LatLng(position.coords.latitude,
+        position.coords.longitude);
+        glLat = position.coords.latitude;
+        glLong = position.coords.longitude;
+
+
+        document.getElementById("demo1").innerHTML = glLat;
+  document.getElementById("demo2").innerHTML = glLong;
+    });
+}
+	
+	</script>
+	
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+	<p id="demo1">hello </p>Latitude
+	<p id="demo2">world</p>Longitude
+    <div id="Div001" style="width:800px"></div>
+	<iframe src="new 33.html" name="iframe_a" width="1500" height="800"> </iframe>
+<p><a href="http://www.usatoday.com/weather/" target="iframe_a"> Click to load </a></p>
+
+<iframe  src="new 33.html"  name="iframe_b"width="1500" height="800"></iframe>
+<p><a href="http://weather.yahooapis.com/forecastrss?w=2430683" target="iframe_b"> click to load </a></p>
+
+	
+  </body>
+</html>
